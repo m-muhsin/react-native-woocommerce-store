@@ -1,8 +1,6 @@
 # react-native-woocommerce-store
 A React Native mobile app using and WordPress and WooCommerce at the back end
 
-![alt text](logo.png)
-
 ![alt text](screenshot.png)
 
 This project was bootstrapped with [Create React Native App](https://github.com/react-community/create-react-native-app).

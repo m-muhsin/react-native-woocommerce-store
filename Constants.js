@@ -1,12 +1,12 @@
 const Constants = {
     URL: {
-        root: 'http://192.168.1.3/react-native-woocommerce-store/',
-        api: 'http://192.168.1.3/react-native-woocommerce-store/wp-json/wp/v2/',
-        wc: 'http://192.168.1.3/react-native-woocommerce-store/wp-json/wc/v2/'
+        root: 'https://affiliates.laccadive.io/',
+        api: 'https://affiliates.laccadive.io/wp-json/wp/v2/',
+        wc: 'https://affiliates.laccadive.io/wp-json/wc/v2/'
     },
     Keys: {
-        ConsumerKey: 'ck_803bcdcaa73d3a406a0f107041b07ef6217e05b9',
-	    ConsumerSecret: 'cs_c50ba3a77cc88c3bf46ebac49bbc96de3a543f03'
+        ConsumerKey: 'ck_0a0506721e6c990527b19f1923935b665594c682',
+	    ConsumerSecret: 'cs_3f3408ee2bfcf62c56bd66bb60d24ae939e4dcf8'
     }
 }
 

@@ -12,16 +12,15 @@ import Products from "./components/Products/ProductList";
 export default class App extends React.Component {
   render() {
     return (
-      <View>
+      <View style={{ marginBottom: 90 }}>
         <ToolbarAndroid
           height={60}
           marginTop={30}
           logo={require("./logo.png")}
           title="React Native WooCommerce Store"
-          actions={[
-            { title: "Cart", show: "always" }
-          ]}
+          navIcon={require('./cart.png')}
           onActionSelected={this.onActionSelected}
+          rtl={true}
         />
         <Products />
       </View>
@@ -31,12 +30,3 @@ export default class App extends React.Component {
     console.log("hi");
   }
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: "#fff",
-    alignItems: "center",
-    justifyContent: "center"
-  }
-});

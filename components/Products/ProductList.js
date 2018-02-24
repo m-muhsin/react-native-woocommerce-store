@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { AppRegistry, FlatList, StyleSheet, Text, View, ScrollView } from "react-native";
+import { AppRegistry, FlatList, StyleSheet, Text, View, ScrollView, Image } from "react-native";
 
 import Constants from '../../Constants';
 
@@ -14,7 +14,7 @@ class Products extends Component {
   componentDidMount() {
     const that = this;
     fetch(
-      `${Constants.URL.api}product?per_page=100&consumer_key=${Constants.Keys.ConsumerKey}&consumer_secret=${Constants.Keys.ConsumerSecret}`
+      `${Constants.URL.wc}products?per_page=100&consumer_key=${Constants.Keys.ConsumerKey}&consumer_secret=${Constants.Keys.ConsumerSecret}`
     )
       .then(function(response) {
         if (!response.ok) {
@@ -38,25 +38,34 @@ class Products extends Component {
   render() {
     return (
         <ScrollView>
-        <FlatList
-          data={this.state.products || []}
-          keyExtractor={this._keyExtractor}
-          renderItem={({ item }) => <Text style={styles.item}>{item.title.rendered}</Text>}
-        />
+          <FlatList
+            data={this.state.products || []}
+            keyExtractor={this._keyExtractor}
+            renderItem={({ item }) => 
+              <View style={styles.view}>
+                <Image  style={styles.image} source={{uri: item.images[0].src}} />
+                <Text style={styles.text}>{item.name}</Text>
+              </View>
+            }
+          />
       </ScrollView>
     );
   }
 }
 
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    paddingTop: 22
-  },
-  item: {
+  view: {
     padding: 10,
-    fontSize: 18,
-    height: 44
+    flexDirection:'row', 
+    flexWrap:'wrap'
+  },
+  image: {
+    width: 40, 
+    height: 40
+  },
+  text: {
+    fontSize: 20,
+    padding: 5
   }
 });
 
