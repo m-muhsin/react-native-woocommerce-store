@@ -4,29 +4,34 @@ import {
   Text,
   View,
   ToolbarAndroid,
-  StatusBar
+  StatusBar,
+  Button
 } from "react-native";
+import { StackNavigator } from "react-navigation";
 
+import HomePage from './components/Home/HomePage';
 import Products from "./components/Products/ProductList";
+import Product from "./components/Products/Product";
 
-export default class App extends React.Component {
-  render() {
-    return (
-      <View style={{ marginBottom: 90 }}>
-        <ToolbarAndroid
-          height={60}
-          marginTop={30}
-          logo={require("./logo.png")}
-          title="React Native WooCommerce Store"
-          navIcon={require('./cart.png')}
-          onActionSelected={this.onActionSelected}
-          rtl={true}
-        />
-        <Products />
-      </View>
-    );
+const App = StackNavigator({
+  Home: {
+    screen: HomePage,
+    navigationOptions: {
+      title: "Home"
+    }
+  },
+  Products: {
+    screen: Products,
+    navigationOptions: {
+      title: "Products"
+    }
+  },
+  Product: {
+    screen: Product,
+    navigationOptions: ({ navigation }) => ({
+      title: navigation.state.params.product.name
+    }),
   }
-  onActionSelected(position) {
-    console.log("hi");
-  }
-}
+});
+
+export default App;
