@@ -10,7 +10,7 @@ class Product extends React.Component {
                 <Image style={styles.image} source={{uri: product.images[0].src}} />                
                 <Text style={styles.text}>{product.name}</Text>
                 <Text style={styles.text}>$ {product.price}</Text>
-                <HTMLView value={product.description} />
+                <HTMLView style={styles.html} value={product.description} />
             </ScrollView>
         );
     }
@@ -29,6 +29,9 @@ const styles = StyleSheet.create({
     description: {
       fontSize: 14,
       padding: 5,
+    },
+    html: {
+        padding: 10
     }
   });
 

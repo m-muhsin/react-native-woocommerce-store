@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import { AppRegistry, FlatList, StyleSheet, Text, View, ScrollView, Image, TouchableHighlight } from "react-native";
 import { StackNavigator } from "react-navigation";
 
-import Constants from '../../Constants';
+import Constants from '../../config/Constants';
 
 class Products extends Component {
   constructor(props) {
