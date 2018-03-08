@@ -3,7 +3,8 @@ import {
   Text,
   Button,
   Animated,
-  Easing
+  Easing,
+  Image
 } from "react-native";
 import { StackNavigator, DrawerNavigator } from "react-navigation";
 
@@ -12,6 +13,8 @@ import Products from "./components/Products/ProductList";
 import Product from "./components/Products/Product";
 import CartPage from './components/CartPage';
 import DrawerContainer from './components/DrawerContainer';
+import CartImage from './images/cart-white.png';
+import MenuIcon from './images/menu-icon.png';
 
 // https://github.com/react-community/react-navigation/issues/1254
 const noTransitionConfig = () => ({
@@ -62,13 +65,13 @@ const drawerButton = (navigation) => (
         navigation.navigate('DrawerClose')
       }
     }
-    }>Menu</Text>
+    }><Image source={MenuIcon} /></Text>
 );
 
 const cartButton = (navigation) => <Text style={{ padding: 5, color: 'white' }} onPress={() => {
  navigation.navigate('CartPage')
 }
-}>Cart</Text>;
+}><Image source={CartImage} /></Text>;
 
 const DrawerNavigation = StackNavigator({
   DrawerStack: { screen: DrawerStack }
