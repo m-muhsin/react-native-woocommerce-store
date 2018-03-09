@@ -7,14 +7,13 @@ import {
   Image
 } from "react-native";
 import { StackNavigator, DrawerNavigator } from "react-navigation";
+import { Ionicons, EvilIcons } from '@expo/vector-icons';
 
 import HomePage from './components/Home/HomePage';
 import Products from "./components/Products/ProductList";
 import Product from "./components/Products/Product";
 import CartPage from './components/CartPage';
 import DrawerContainer from './components/DrawerContainer';
-import CartImage from './images/cart-white.png';
-import MenuIcon from './images/menu-icon.png';
 
 // https://github.com/react-community/react-navigation/issues/1254
 const noTransitionConfig = () => ({
@@ -57,7 +56,7 @@ const DrawerStack = DrawerNavigator({
 
 const drawerButton = (navigation) => (
   <Text
-    style={{ padding: 5, color: 'white' }}
+    style={{ padding: 15, color: 'white' }}
     onPress={() => {
       if (navigation.state.index === 0) {
         navigation.navigate('DrawerOpen')
@@ -65,13 +64,13 @@ const drawerButton = (navigation) => (
         navigation.navigate('DrawerClose')
       }
     }
-    }><Image source={MenuIcon} /></Text>
+    }><Ionicons name="ios-menu" size={30} /></Text>
 );
 
-const cartButton = (navigation) => <Text style={{ padding: 5, color: 'white' }} onPress={() => {
+const cartButton = (navigation) => <Text style={{ padding: 15, color: 'white' }} onPress={() => {
  navigation.navigate('CartPage')
 }
-}><Image source={CartImage} /></Text>;
+}><EvilIcons name="cart" size={30} /></Text>;
 
 const DrawerNavigation = StackNavigator({
   DrawerStack: { screen: DrawerStack }
