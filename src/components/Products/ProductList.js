@@ -2,7 +2,8 @@ import React, { Component } from "react";
 import { AppRegistry, FlatList, StyleSheet, Text, View, ScrollView, Image, TouchableHighlight } from "react-native";
 import { StackNavigator } from "react-navigation";
 
-import Constants from '../../config/Constants';
+import Constants from '../../constants/Constants';
+import LoadingAnimation from '../../img/cart-loading.gif'; 
 
 class Products extends Component {
   constructor(props) {
@@ -54,7 +55,7 @@ class Products extends Component {
       <ScrollView>
         {this.state.products.length ? Items : 
           <View style={{ alignItems: 'center', justifyContent: 'center' }}>
-            <Image style={styles.loader} source={require('../../images/cart-loading.gif') }/>
+            <Image style={styles.loader} source={LoadingAnimation}/>
           </View>
         }
       </ScrollView>

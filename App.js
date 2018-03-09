@@ -9,11 +9,11 @@ import {
 import { StackNavigator, DrawerNavigator } from "react-navigation";
 import { Ionicons, EvilIcons } from '@expo/vector-icons';
 
-import HomePage from './components/Home/HomePage';
-import Products from "./components/Products/ProductList";
-import Product from "./components/Products/Product";
-import CartPage from './components/CartPage';
-import DrawerContainer from './components/DrawerContainer';
+import HomePage from './src/components/Home/HomePage';
+import Products from "./src/components/Products/ProductList";
+import Product from "./src/components/Products/Product";
+import CartPage from './src/components/Cart/CartPage';
+import DrawerContainer from './src/components/Drawer/DrawerContainer';
 
 // https://github.com/react-community/react-navigation/issues/1254
 const noTransitionConfig = () => ({
