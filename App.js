@@ -24,7 +24,7 @@ const noTransitionConfig = () => ({
   }
 });
 
-const DrawerStack = DrawerNavigator({
+const DrawerNavigation = DrawerNavigator({
   Home: {
     screen: HomePage,
     navigationOptions: {
@@ -67,27 +67,40 @@ const drawerButton = (navigation) => (
     }><Ionicons name="ios-menu" size={30} /></Text>
 );
 
-const cartButton = (navigation) => <Text style={{ padding: 15, color: 'white' }} onPress={() => {
- navigation.navigate('CartPage')
+const cartButton = (navigation, screenProps) => <Text style={{ padding: 15, color: 'white' }} onPress={() => {
+  navigation.navigate('CartPage')
 }
-}><EvilIcons name="cart" size={30} /></Text>;
+}><EvilIcons name="cart" size={30} />{screenProps.cartCount}</Text>;
 
-const DrawerNavigation = StackNavigator({
-  DrawerStack: { screen: DrawerStack }
+const StackNavigation = StackNavigator({
+  DrawerNavigation: { screen: DrawerNavigation }
 }, {
     headerMode: 'float',
-    navigationOptions: ({ navigation }) => ({
+    navigationOptions: ({ navigation, screenProps }) => ({
       headerStyle: { backgroundColor: '#4C3E54' },
       headerTintColor: 'white',
       gesturesEnabled: false,
       headerLeft: drawerButton(navigation),
-      headerRight: cartButton(navigation)
+      headerRight: cartButton(navigation, screenProps)
     })
   })
 
+class NavigationContainer extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      cartCount: 0
+    }
+  }
+
+  render() {
+    return <StackNavigation screenProps={this.state} />
+  }
+}
+
 const App = StackNavigator({
   Home: {
-    screen: DrawerNavigation
+    screen: NavigationContainer
   }
 }, {
     // Default config for all screens
