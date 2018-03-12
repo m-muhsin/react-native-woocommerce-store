@@ -1,38 +1,19 @@
 import React, { Component } from "react";
 import { AppRegistry, FlatList, StyleSheet, Text, View, ScrollView, Image, TouchableHighlight } from "react-native";
 import { StackNavigator } from "react-navigation";
+import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
 
 import Constants from '../../constants/Constants';
 import LoadingAnimation from '../../img/cart-loading.gif'; 
+import * as ProductAction from '../../actions/ProductAction';
 
-class Products extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      products: []
-    };
-  }
+class ProductsList extends Component {
+  
 
   componentDidMount() {
-    const that = this;
-    fetch(
-      `${Constants.URL.wc}products?per_page=100&consumer_key=${Constants.Keys.ConsumerKey}&consumer_secret=${Constants.Keys.ConsumerSecret}`
-    )
-      .then(function(response) {
-        if (!response.ok) {
-          throw Error(response.statusText);
-        }
-        return response.json();
-      })
-      .then(function(res) {
-        that.setState({ products: res });
-      })
-      .catch(function(error) {
-        console.log(
-          "There has been a problem with your fetch operation: ",
-          error.message
-        );
-      });
+    this.props.ProductAction.getProducts();
+
   }
 
   _keyExtractor = (item, index) => item.id;
@@ -40,7 +21,7 @@ class Products extends Component {
   render() {
     const { navigate } = this.props.navigation;
     const Items = <FlatList contentContainerStyle={styles.list} numColumns={2}
-      data={this.state.products || []}
+      data={this.props.products || []}
       keyExtractor={this._keyExtractor}
       renderItem={({ item }) => 
       <TouchableHighlight style={{width:'50%'}} onPress={() => navigate("Product", { product: item })} underlayColor="white">
@@ -53,7 +34,7 @@ class Products extends Component {
     />;
     return (
       <ScrollView>
-        {this.state.products.length ? Items : 
+        {this.props.products.length ? Items : 
           <View style={{ alignItems: 'center', justifyContent: 'center' }}>
             <Image style={styles.loader} source={LoadingAnimation}/>
           </View>
@@ -87,4 +68,17 @@ const styles = StyleSheet.create({
   }
 });
 
-export default Products;
+function mapStateToProps(state) {
+  console.log('mapStateToProps',state)
+	return {
+		products: state.products
+	};
+}
+
+function mapDispatchToProps(dispatch) {
+	return {
+		ProductAction: bindActionCreators(ProductAction, dispatch)
+	};
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(ProductsList);

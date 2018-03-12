@@ -8,12 +8,17 @@ import {
 } from "react-native";
 import { StackNavigator, DrawerNavigator } from "react-navigation";
 import { Ionicons, EvilIcons } from '@expo/vector-icons';
+import { Provider } from 'react-redux';
 
 import HomePage from './src/components/Home/HomePage';
 import Products from "./src/components/Products/ProductList";
 import Product from "./src/components/Products/Product";
 import CartPage from './src/components/Cart/CartPage';
 import DrawerContainer from './src/components/Drawer/DrawerContainer';
+import configureStore from './src/store/configureStore';
+import initialState from './src/reducers/initialState';
+
+const store = configureStore();
 
 // https://github.com/react-community/react-navigation/issues/1254
 const noTransitionConfig = () => ({
@@ -94,7 +99,11 @@ class NavigationContainer extends React.Component {
   }
 
   render() {
-    return <StackNavigation screenProps={this.state} />
+    return (
+      <Provider store={store}>
+        <StackNavigation screenProps={this.state} />
+      </Provider>
+    )
   }
 }
 

@@ -25,6 +25,9 @@
     "react": "16.2.0",
     "react-native": "0.52.0",
     "react-native-htmlview": "^0.12.1",
-    "react-navigation": "^1.2.0"
+    "react-navigation": "^1.2.0",
+    "react-redux": "^5.0.7",
+    "redux": "^3.7.2",
+    "redux-thunk": "^2.2.0"
   }
 }
