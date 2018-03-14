@@ -7,11 +7,9 @@ class ProductApi {
         const url = `${Constants.URL.wc}products?per_page=100&consumer_key=${Constants.Keys.ConsumerKey}&consumer_secret=${Constants.Keys.ConsumerSecret}`
 
         return axio.get(url).then(response => {
-            console.log(response)
             return response.data;
         }).catch(this.handleError);
     }
 }
 
-
-export default ProductApi
+export default ProductApi;

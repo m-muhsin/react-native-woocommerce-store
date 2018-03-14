@@ -69,7 +69,6 @@ const styles = StyleSheet.create({
 });
 
 function mapStateToProps(state) {
-  console.log('mapStateToProps',state)
 	return {
 		products: state.products
 	};

@@ -1,31 +1,36 @@
 import React from 'react';
 import { StyleSheet, Text, View, ScrollView, Image, TextInput, TouchableOpacity } from "react-native";
 import HTMLView from 'react-native-htmlview';
+import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
+
+import * as CartAction from '../../actions/CartAction';
 
 class Product extends React.Component {
     constructor(props) {
         super(props);
-        this.state = { count: 1 };
+        this.state = { quantity: 1 };
     }
 
     decreaseQuantity = () => {
-        if(this.state.count <= 1) {
+        if(this.state.quantity <= 1) {
             return;
         } else {
             this.setState({
-                count: this.state.count - 1
+                quantity: this.state.quantity - 1
             });
         }
     }
 
     increaseQuantitiy = () => {
         this.setState({
-            count: this.state.count - 1 + 2
+            quantity: this.state.quantity - 1 + 2
         });
     }
 
-    addToCart() {
-        console.log('added');
+    addToCart(product) {
+        console.log('added',this.state.quantity,product);
+        this.props.CartAction.addToCart(product, this.state.quantity);
     }
 
     render() {
@@ -41,15 +46,15 @@ class Product extends React.Component {
                         </TouchableOpacity>
                         <TextInput
                             style={styles.input}
-                            onChangeText={(count) => this.setState({ count })}
-                            value={`${this.state.count}`}
+                            onChangeText={(quantity) => this.setState({ quantity })}
+                            value={`${this.state.quantity}`}
                             keyboardType="numeric"
                         />
                         <TouchableOpacity style={styles.inceaseButton} onPress={this.increaseQuantitiy} >
                             <Text> + </Text>
                         </TouchableOpacity>
                     </View>
-                    <TouchableOpacity style={styles.button} onPress={this.addToCart} >
+                    <TouchableOpacity style={styles.button} onPress={() => this.addToCart(product)} >
                         <Text style={{ color: '#fff' }}> ADD TO CART </Text>
                     </TouchableOpacity>
                 </View>
@@ -116,4 +121,16 @@ const styles = StyleSheet.create({
     }
 });
 
-export default Product;
+// function mapStateToProps(state) {
+// 	return {
+// 		cart: state.cart
+// 	};
+// }
+
+function mapDispatchToProps(dispatch) {
+	return {
+		CartAction: bindActionCreators(CartAction, dispatch)
+	};
+}
+
+export default connect(null, mapDispatchToProps)(Product);
