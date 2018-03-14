@@ -49,11 +49,11 @@ const styles = StyleSheet.create({
   uglyDrawerItem: {
     fontSize: 18,
     fontWeight: 'bold',
-    color: '#E73536',
+    color: '#4C3E54',
     padding: 15,
     margin: 5,
     borderRadius: 2,
-    borderColor: '#E73536',
+    borderColor: '#4C3E54',
     borderWidth: 1,
     textAlign: 'center'
   }

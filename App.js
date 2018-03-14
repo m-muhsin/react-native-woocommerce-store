@@ -16,7 +16,7 @@ import Product from "./src/components/Products/Product";
 import CartPage from './src/components/Cart/CartPage';
 import DrawerContainer from './src/components/Drawer/DrawerContainer';
 import configureStore from './src/store/configureStore';
-import initialState from './src/reducers/initialState';
+import InitialState from './src/reducers/InitialState';
 
 const store = configureStore();
 
