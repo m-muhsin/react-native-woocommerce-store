@@ -1,5 +1,15 @@
 {
   "expo": {
-    "sdkVersion": "25.0.0"
+   "name": "RN WC Store",
+   "icon": "./icon.png",
+   "version": "1.0.0",
+   "slug": "rn-wc-store",
+   "sdkVersion": "25.0.0",
+   "ios": {
+     "bundleIdentifier": "io.laccadive.store"
+   },
+   "android": {
+     "package": "io.laccadive.store"
+   }
   }
 }
