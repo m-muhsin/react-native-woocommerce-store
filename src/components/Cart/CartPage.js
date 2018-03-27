@@ -18,7 +18,7 @@ class CartPage extends React.Component {
     this.props.CartAction.getCart();
   }
 
-  _keyExtractor = (item, index) => item.key;
+  _keyExtractor = (item, index) => item.product;
 
   removeItem(item) {
     console.log(item)
@@ -26,25 +26,20 @@ class CartPage extends React.Component {
 
   render() {
     const { cart } = this.props;
-    if(cart) {
-      const cartObject = cart;
-      var cartArray = [];
-      Object.keys(cartObject).forEach(function(key) {
-        cartArray.push(cartObject[key]);
-      });
+    console.log('cart', cart)
+
+    if (cart && cart.length > 0) {
+      var cartArray = JSON.parse(cart);
       const Items = <FlatList contentContainerStyle={styles.list}
         data={cartArray}
         keyExtractor={this._keyExtractor}
-        renderItem={({ item }) => 
-        // <TouchableHighlight style={{width:'50%'}} onPress={() => navigate("Product", { product: item })} underlayColor="white">
-          <View key={item} style={styles.lineItem} >
-            {/* <Text>{JSON.stringify(item)}</Text> */}
-            <Image style={styles.image} source={{uri: item.product_image}} />
-            <Text style={styles.text}>{item.product_name}</Text>
+        renderItem={({ item }) =>
+          <View style={styles.lineItem} >
+            <Image style={styles.image} source={{ uri: item.product.images[0].src }} />
+            <Text style={styles.text}>{item.product.name}</Text>
             <Text style={styles.text}>{item.quantity}</Text>
-            <TouchableOpacity onPress={ ()=>this.removeItem(item) }><Entypo name="cross" size={30} /></TouchableOpacity>
+            <TouchableOpacity onPress={() => this.removeItem(item)}><Entypo name="cross" size={30} /></TouchableOpacity>
           </View>
-        // </TouchableHighlight>
         }
       />;
       return (
@@ -70,7 +65,7 @@ const styles = StyleSheet.create({
     flexDirection: 'column'
   },
   image: {
-    width: 50, 
+    width: 50,
     height: 50
   },
   container: {
@@ -86,15 +81,15 @@ const styles = StyleSheet.create({
 })
 
 function mapStateToProps(state) {
-	return {
-		cart: state.cart
-	};
+  return {
+    cart: state.cart
+  };
 }
 
 function mapDispatchToProps(dispatch) {
-	return {
-		CartAction: bindActionCreators(CartAction, dispatch)
-	};
+  return {
+    CartAction: bindActionCreators(CartAction, dispatch)
+  };
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(CartPage);

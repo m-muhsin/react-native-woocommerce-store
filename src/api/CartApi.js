@@ -1,30 +1,35 @@
 import axio from 'axios';
+import { AsyncStorage } from 'react-native';
 
 import Constants from '../constants/Constants';
 
 class CartApi {
     static getCart() {
-        const url = `${Constants.URL.wc}cart?thumb=true`
-
-        return axio.get(url).then(response => {
-            return response.data;
+        return AsyncStorage.getItem('cart', (err, result) => {
+            jsonCart = JSON.parse(result);
+            return jsonCart;
         }).catch(err => {
-            console.log('error', err)
+            console.log('error', err);
         });
     }
 
     static addToCart(product, quantity) {
-        const url = `${Constants.URL.wc}cart/add`
-        
-        return axio.post(url,
-            {
-                product_id: product.id,
-                quantity: quantity
+        return AsyncStorage.getItem('cart', (err, result) => {
+
+            jsonCart = JSON.parse(result);
+
+            const cartItem = {
+                "product": product,
+                "quantity": quantity
             }
-        ).then(response => {
-            return response.data;
+
+            jsonCart.push(cartItem);
+
+            AsyncStorage.setItem('cart', JSON.stringify(jsonCart));
+
+            return jsonCart;
         }).catch(err => {
-            console.log('error', err)
+            console.log('error', err);
         });
     }
 }

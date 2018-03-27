@@ -29,7 +29,6 @@ class Product extends React.Component {
     }
 
     addToCart(product) {
-        console.log('added',this.state.quantity,product);
         this.props.CartAction.addToCart(product, this.state.quantity);
     }
 
