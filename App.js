@@ -18,17 +18,6 @@ import DrawerContainer from './src/components/Drawer/DrawerContainer';
 import configureStore from './src/store/configureStore';
 import InitialState from './src/reducers/InitialState';
 
-const store = configureStore();
-
-// https://github.com/react-community/react-navigation/issues/1254
-const noTransitionConfig = () => ({
-  transitionSpec: {
-    duration: 0,
-    timing: Animated.timing,
-    easing: Easing.step0
-  }
-});
-
 const DrawerNavigation = DrawerNavigator({
   Home: {
     screen: HomePage,
@@ -59,6 +48,20 @@ const DrawerNavigation = DrawerNavigator({
     contentComponent: DrawerContainer
   });
 
+
+  const StackNavigation = StackNavigator({
+    DrawerNavigation: { screen: DrawerNavigation }
+  }, {
+      headerMode: 'float',
+      navigationOptions: ({ navigation, screenProps }) => ({
+        headerStyle: { backgroundColor: '#4C3E54' },
+        headerTintColor: 'white',
+        gesturesEnabled: false,
+        headerLeft: drawerButton(navigation),
+        headerRight: cartButton(navigation, screenProps)
+      })
+    });
+
 const drawerButton = (navigation) => (
   <Text
     style={{ padding: 15, color: 'white' }}
@@ -77,20 +80,9 @@ const cartButton = (navigation, screenProps) => <Text style={{ padding: 15, colo
 }
 }><EvilIcons name="cart" size={30} />{screenProps.cartCount}</Text>;
 
-const StackNavigation = StackNavigator({
-  DrawerNavigation: { screen: DrawerNavigation }
-}, {
-    headerMode: 'float',
-    navigationOptions: ({ navigation, screenProps }) => ({
-      headerStyle: { backgroundColor: '#4C3E54' },
-      headerTintColor: 'white',
-      gesturesEnabled: false,
-      headerLeft: drawerButton(navigation),
-      headerRight: cartButton(navigation, screenProps)
-    })
-  })
+const store = configureStore();
 
-class NavigationContainer extends React.Component {
+class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -106,17 +98,5 @@ class NavigationContainer extends React.Component {
     )
   }
 }
-
-const App = StackNavigator({
-  Home: {
-    screen: NavigationContainer
-  }
-}, {
-    // Default config for all screens
-    headerMode: 'none',
-    title: 'Main',
-    initialRouteName: 'Home',
-    transitionConfig: noTransitionConfig
-  });
 
 export default App;

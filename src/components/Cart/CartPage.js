@@ -1,7 +1,8 @@
 import React from 'react'
-import { StyleSheet, Text, View, FlatList, Image } from 'react-native'
+import { StyleSheet, Text, View, FlatList, Image, TouchableOpacity } from 'react-native'
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
+import { Entypo } from '@expo/vector-icons';
 
 import * as CartAction from '../../actions/CartAction';
 
@@ -19,31 +20,45 @@ class CartPage extends React.Component {
 
   _keyExtractor = (item, index) => item.key;
 
+  removeItem(item) {
+    console.log(item)
+  }
+
   render() {
-    console.log(this.props.cart)
-    const cartObject = this.props.cart;
-    var cartArray = [];
-    Object.keys(cartObject).forEach(function(key) {
-      cartArray.push(cartObject[key]);
-    });
-    const Items = <FlatList contentContainerStyle={styles.list}
-      data={cartArray}
-      keyExtractor={this._keyExtractor}
-      renderItem={({ item }) => 
-      // <TouchableHighlight style={{width:'50%'}} onPress={() => navigate("Product", { product: item })} underlayColor="white">
-        <View style={styles.lineItem} >
-          <Image style={styles.image} source={{uri: item.product_image}} />
-          <Text style={styles.text}>{item.product_name}</Text>
-          <Text style={styles.text}>{item.quantity}</Text>
+    const { cart } = this.props;
+    if(cart) {
+      const cartObject = cart;
+      var cartArray = [];
+      Object.keys(cartObject).forEach(function(key) {
+        cartArray.push(cartObject[key]);
+      });
+      const Items = <FlatList contentContainerStyle={styles.list}
+        data={cartArray}
+        keyExtractor={this._keyExtractor}
+        renderItem={({ item }) => 
+        // <TouchableHighlight style={{width:'50%'}} onPress={() => navigate("Product", { product: item })} underlayColor="white">
+          <View key={item} style={styles.lineItem} >
+            {/* <Text>{JSON.stringify(item)}</Text> */}
+            <Image style={styles.image} source={{uri: item.product_image}} />
+            <Text style={styles.text}>{item.product_name}</Text>
+            <Text style={styles.text}>{item.quantity}</Text>
+            <TouchableOpacity onPress={ ()=>this.removeItem(item) }><Entypo name="cross" size={30} /></TouchableOpacity>
+          </View>
+        // </TouchableHighlight>
+        }
+      />;
+      return (
+        <View style={styles.container}>
+          {Items}
         </View>
-      // </TouchableHighlight>
-      }
-    />;
-    return (
-      <View style={styles.container}>
-        {Items}
-      </View>
-    )
+      )
+    } else {
+      return (
+        <View>
+          <Text>Cart is empty!</Text>
+        </View>
+      )
+    }
   }
 }
 
