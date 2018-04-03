@@ -1,7 +1,5 @@
 const Constants = {
     URL: {
-        root: 'https://affiliates.laccadive.io/',
-        api: 'https://affiliates.laccadive.io/wp-json/wp/v2/',
         wc: 'https://affiliates.laccadive.io/wp-json/wc/v2/'
     },
     Keys: {

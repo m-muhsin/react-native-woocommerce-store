@@ -1,5 +1,5 @@
 import React from 'react'
-import { StyleSheet, Text, View, FlatList, Image, TouchableOpacity } from 'react-native'
+import { StyleSheet, Text, View, FlatList, Image, TouchableOpacity, AsyncStorage } from 'react-native'
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { Entypo } from '@expo/vector-icons';
@@ -7,31 +7,24 @@ import { Entypo } from '@expo/vector-icons';
 import * as CartAction from '../../actions/CartAction';
 
 class CartPage extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      cart: {}
-    }
-  }
 
   componentDidMount() {
     this.props.CartAction.getCart();
   }
 
-  _keyExtractor = (item, index) => item.product;
+  _keyExtractor = (item, index) => item.product.id;
 
   removeItem(item) {
-    console.log(item)
+    this.props.CartAction.removeFromCart(item);
   }
 
   render() {
     const { cart } = this.props;
-    console.log('cart', cart)
+    console.log('render cart', cart)
 
     if (cart && cart.length > 0) {
-      var cartArray = JSON.parse(cart);
       const Items = <FlatList contentContainerStyle={styles.list}
-        data={cartArray}
+        data={cart}
         keyExtractor={this._keyExtractor}
         renderItem={({ item }) =>
           <View style={styles.lineItem} >
