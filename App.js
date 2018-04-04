@@ -45,7 +45,6 @@ const DrawerNavigation = DrawerNavigator({
     }
   }
 }, {
-    gesturesEnabled: false,
     contentComponent: DrawerContainer
   });
 
@@ -57,7 +56,6 @@ const StackNavigation = StackNavigator({
     navigationOptions: ({ navigation, screenProps }) => ({
       headerStyle: { backgroundColor: '#4C3E54' },
       headerTintColor: 'white',
-      gesturesEnabled: false,
       headerLeft: drawerButton(navigation),
       headerRight: cartButton(navigation, screenProps)
     })
