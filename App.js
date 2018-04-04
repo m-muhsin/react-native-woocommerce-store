@@ -29,7 +29,7 @@ const DrawerNavigation = DrawerNavigator({
   Products: {
     screen: Products,
     navigationOptions: {
-      title: "Products"
+      title: "Shop"
     }
   },
   Product: {
