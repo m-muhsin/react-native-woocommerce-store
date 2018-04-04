@@ -31,7 +31,7 @@ class CartPage extends React.Component {
             <Image style={styles.image} source={{ uri: item.image }} />
             <Text style={styles.text}>{item.name}</Text>
             <Text style={styles.text}>{item.quantity}</Text>
-            <TouchableOpacity onPress={() => this.removeItem(item)}><Entypo name="cross" size={30} /></TouchableOpacity>
+            <TouchableOpacity style={{ marginLeft: 'auto' }} onPress={() => this.removeItem(item)}><Entypo name="cross" size={30} /></TouchableOpacity>
           </View>
         }
       />;
@@ -63,7 +63,7 @@ const styles = StyleSheet.create({
   },
   container: {
     flex: 1,
-    backgroundColor: '#fff',
+    marginTop: 20,
     alignItems: 'center',
     justifyContent: 'center',
   },

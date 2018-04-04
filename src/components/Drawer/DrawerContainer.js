@@ -21,17 +21,17 @@ export default class DrawerContainer extends React.Component {
       <View style={styles.container}>
         <Text
           onPress={() => navigation.navigate('Home')}
-          style={styles.uglyDrawerItem}>
+          style={styles.transparentButton}>
           Home
         </Text>
         <Text
           onPress={() => navigation.navigate('Products')}
-          style={styles.uglyDrawerItem}>
+          style={styles.transparentButton}>
           Products
         </Text>
         <Text
           onPress={() => navigation.navigate('CartPage')}
-          style={styles.uglyDrawerItem}>
+          style={styles.transparentButton}>
           Cart
         </Text>
       </View>
@@ -46,7 +46,7 @@ const styles = StyleSheet.create({
     paddingTop: 40,
     paddingHorizontal: 20
   },
-  uglyDrawerItem: {
+  transparentButton: {
     fontSize: 18,
     fontWeight: 'bold',
     color: '#4C3E54',

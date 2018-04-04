@@ -20,19 +20,19 @@ class HomePage extends React.Component {
           horizontal
           scrollEventThrottle={10}
           pagingEnabled
-          style={{marginBottom:10}}
+          style={{ marginBottom: 10 }}
         >
           <Image
-            source={{uri: 'https://affiliates.laccadive.io/wp-content/uploads/2018/02/sunglasses-324x324.jpg'}} style={styles.sliderImage}
+            source={{ uri: 'https://affiliates.laccadive.io/wp-content/uploads/2018/02/sunglasses-324x324.jpg' }} style={styles.sliderImage}
           />
           <Image
-            source={{uri: 'https://affiliates.laccadive.io/wp-content/uploads/2018/02/cap-324x324.jpg'}} style={styles.sliderImage}
+            source={{ uri: 'https://affiliates.laccadive.io/wp-content/uploads/2018/02/cap-324x324.jpg' }} style={styles.sliderImage}
           />
           <Image
-            source={{uri: 'https://affiliates.laccadive.io/wp-content/uploads/2018/02/polo-324x324.jpg'}} style={styles.sliderImage}
+            source={{ uri: 'https://affiliates.laccadive.io/wp-content/uploads/2018/02/polo-324x324.jpg' }} style={styles.sliderImage}
           />
         </ScrollView>
-        <Button title="Products" onPress={() => navigate("Products")} />
+        <Button color="#05a5d1" title="SHOP" onPress={() => navigate("Products")} />
       </View>
     );
   }
