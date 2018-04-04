@@ -6,14 +6,31 @@ export default function (state = InitialState.cart, action) {
 		case types.GET_CART_SUCCESS:
 			return state;
 		case types.ADD_TO_CART_SUCCESS:
-			console.log('ADD_TO_CART_SUCCESS state',state)
-			return [
-				...state,
-				action.item
-			];
+			console.log('ADD_TO_CART_SUCCESS state', state)
+			var exists = false;
+			const newState = state.map(item => {
+				if (item.id === action.item.id) {
+					exists = true;
+					return {
+						...item,
+						quantity: item.quantity + action.item.quantity
+					}
+				} else {
+					return item
+				}
+			});
+
+			if (exists) {
+				return newState;
+			} else {
+				return [
+					...state,
+					action.item
+				];
+			}
 		case types.REMOVE_FROM_CART_SUCCESS:
 			const remaingList = [
-				...state.filter(i => i.product.id !== action.item.product.id)
+				...state.filter(i => i.id !== action.item.id)
 			]
 			return remaingList;
 		default:

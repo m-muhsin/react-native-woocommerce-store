@@ -11,7 +11,9 @@ export function getCart() {
 export function addToCart(product, quantity) {
     return (dispatch) => {
         const cartItem = {
-            "product": product,
+            "id": product.id,
+            "image": product.images[0].src,
+            "name": product.name,
             "quantity": quantity
         }
         dispatch({

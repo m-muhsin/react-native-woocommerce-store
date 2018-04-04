@@ -12,7 +12,7 @@ class CartPage extends React.Component {
     this.props.CartAction.getCart();
   }
 
-  _keyExtractor = (item, index) => item.product.id;
+  _keyExtractor = (item, index) => item.id;
 
   removeItem(item) {
     this.props.CartAction.removeFromCart(item);
@@ -28,8 +28,8 @@ class CartPage extends React.Component {
         keyExtractor={this._keyExtractor}
         renderItem={({ item }) =>
           <View style={styles.lineItem} >
-            <Image style={styles.image} source={{ uri: item.product.images[0].src }} />
-            <Text style={styles.text}>{item.product.name}</Text>
+            <Image style={styles.image} source={{ uri: item.image }} />
+            <Text style={styles.text}>{item.name}</Text>
             <Text style={styles.text}>{item.quantity}</Text>
             <TouchableOpacity onPress={() => this.removeItem(item)}><Entypo name="cross" size={30} /></TouchableOpacity>
           </View>
@@ -42,7 +42,7 @@ class CartPage extends React.Component {
       )
     } else {
       return (
-        <View>
+        <View style={styles.container}>
           <Text>Cart is empty!</Text>
         </View>
       )
