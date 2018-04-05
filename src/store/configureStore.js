@@ -1,5 +1,3 @@
-/* eslint-disable global-require */
-/* eslint-disable no-undef */
 import { createStore, applyMiddleware } from 'redux';
 import thunk from 'redux-thunk';
 import RootReducer from '../reducers/RootReducer';

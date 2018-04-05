@@ -120,12 +120,6 @@ const styles = StyleSheet.create({
     }
 });
 
-// function mapStateToProps(state) {
-// 	return {
-// 		cart: state.cart
-// 	};
-// }
-
 function mapDispatchToProps(dispatch) {
 	return {
 		CartAction: bindActionCreators(CartAction, dispatch)
