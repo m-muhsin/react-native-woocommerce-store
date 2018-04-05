@@ -15,7 +15,7 @@ class HomePage extends React.Component {
     const { navigate } = this.props.navigation;
     return (
       <View>
-        <Text style={styles.title}>Welcome to Laccadive IO Store</Text>
+        <Text style={styles.title}>React Native WooCommerce Store</Text>
         <ScrollView
           horizontal
           scrollEventThrottle={10}
@@ -40,7 +40,7 @@ class HomePage extends React.Component {
 
 const styles = StyleSheet.create({
   title: {
-    fontSize: 24,
+    fontSize: 22,
     padding: 10
   },
   sliderImage: {

@@ -23,7 +23,7 @@ const DrawerNavigation = DrawerNavigator({
   Home: {
     screen: HomePage,
     navigationOptions: {
-      title: "Laccadive IO Store"
+      title: "RN WC Store"
     }
   },
   Products: {
