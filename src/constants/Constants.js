@@ -1,10 +1,10 @@
 const Constants = {
     URL: {
-        wc: 'https://affiliates.laccadive.io/wp-json/wc/v2/'
+        wc: 'https://woocommerce-store.on-its-way.com/wp-json/wc/v2/'
     },
     Keys: {
-        ConsumerKey: 'ck_0a0506721e6c990527b19f1923935b665594c682',
-	    ConsumerSecret: 'cs_3f3408ee2bfcf62c56bd66bb60d24ae939e4dcf8'
+        ConsumerKey: 'ck_286be1c0fd553c4b803ba2b12c72593eb4676f8d',
+	    ConsumerSecret: 'cs_d4cc172fabaeef203a78f119518df0453753db65'
     }
 }
 
