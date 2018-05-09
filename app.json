@@ -6,10 +6,10 @@
    "slug": "rn-wc-store",
    "sdkVersion": "25.0.0",
    "ios": {
-     "bundleIdentifier": "io.laccadive.store"
+     "bundleIdentifier": "com.woocommerce.store"
    },
    "android": {
-     "package": "io.laccadive.store"
+     "package": "com.woocommerce.store"
    }
   }
 }
